@@ -1,4 +1,4 @@
-name: Xcode - Build & codecov test 
+name: Xcode - Build & Analyze
 
 on:
   workflow_dispatch:
@@ -16,10 +16,9 @@ jobs:
       - name: Set Default Scheme
         run: |
          xcodebuild test -project TestApp.xcodeproj -scheme TestApp -destination "platform=iOS Simulator,name=iPhone 14 pro,OS=16.2" build test -resultBundlePath TestResults
-
-      - name: Run Tests
-        run: |
-          xcodebuild -scheme "MyFramework"  -resultBundlePath TestResults test
+#      - name: Run Tests
+#        run: |
+#          xcodebuild -scheme "MyFramework"  -resultBundlePath TestResults test
       - uses: tbartelmess/analyze-xcoderesults-action@0.1.0
         if: always()
         with:
