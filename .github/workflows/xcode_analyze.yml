@@ -21,13 +21,6 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: Kesin11/actions-timeline@v1
-        with:
-         # PATを利用する場合は: ${{ secrets.MY_PAT }}
-         # デフォルトは ${{ github.token }} が使われるので通常は省略可能です
-         github-token: ''
-
-      - name: Checkout
         uses: actions/checkout@v3
       - name: Set Default Scheme
         run: |
@@ -41,3 +34,9 @@ jobs:
         with:
           results: TestResults.xcresult
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  action-timeline:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - uses: Kesin11/actions-timeline@v2
