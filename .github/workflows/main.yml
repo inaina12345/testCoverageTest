@@ -1,6 +1,7 @@
 # .github/workflows/git-pr-release.yaml
 name: git-pr-release
 on:
+  # 手動実行可能にする
   workflow_dispatch :
  # push:
  #   branches:
