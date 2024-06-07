@@ -1,9 +1,10 @@
 # .github/workflows/git-pr-release.yaml
 name: git-pr-release
 on:
-  push:
-    branches:
-    - develop
+  workflow_dispatch :
+ # push:
+ #   branches:
+ #   - develop
 jobs:
   git-pr-release:
     runs-on: ubuntu-latest
