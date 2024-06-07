@@ -8,10 +8,10 @@ jobs:
   git-pr-release:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # git-pr-release needs the git histories
-      - uses: actions/setup-ruby@v1
+      - uses: actions/setup-ruby@v4
         with:
           ruby-version: 3.1
       - run: gem install --no-document git-pr-release
@@ -20,6 +20,6 @@ jobs:
           GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: main
           GIT_PR_RELEASE_BRANCH_STAGING: develop
-          GIT_PR_RELEASE_LABELS: アプリ申請ワークフロー発動1111
+          GIT_PR_RELEASE_LABELS: アプリ申請ワークフロー発動
           # GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release.erb
           # TZ: Asia/Tokyo
