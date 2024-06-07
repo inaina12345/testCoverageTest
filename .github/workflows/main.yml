@@ -20,6 +20,6 @@ jobs:
           GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: main
           GIT_PR_RELEASE_BRANCH_STAGING: develop
-          GIT_PR_RELEASE_LABELS: アプリ申請ワークフロー発動
+          GIT_PR_RELEASE_LABELS: アプリ申請ワークフロー発動1111
           # GIT_PR_RELEASE_TEMPLATE: .github/git-pr-release.erb
           # TZ: Asia/Tokyo
