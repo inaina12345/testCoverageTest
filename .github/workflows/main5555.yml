@@ -24,6 +24,7 @@ jobs:
           rm metadata_diff.txt
         fi
         # AppStoreメタデータ情報の差分ファイル一覧出力
-        git diff --name-only > metadata_diff.txt || echo "No changes detected or error occurred"
+        #git diff --name-only > metadata_diff.txt || echo "No changes detected or error occurred"
+        git diff --name-only > metadata_diff.txt
         # metadata_diff.txtの内容を表示
         cat metadata_diff.txt
