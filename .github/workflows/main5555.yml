@@ -1,0 +1,29 @@
+name: Switch Branch and Diff
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  switch-branch-and-diff:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Switch to target branch and run git diff
+      run: |
+        set -e
+        branchName="update_metadata"
+        # releaseブランチへのマージPR用ブランチへのチェックアウト
+        git checkout -b ${branchName}
+        # メタデータ差分ファイル一覧テキスト削除
+        if [ -e metadata_diff.txt ]; then
+          rm metadata_diff.txt
+        fi
+        # AppStoreメタデータ情報の差分ファイル一覧出力
+        git diff --name-only > metadata_diff.txt || echo "No changes detected or error occurred"
+        # metadata_diff.txtの内容を表示
+        cat metadata_diff.txt
