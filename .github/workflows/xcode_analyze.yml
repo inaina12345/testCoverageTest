@@ -25,20 +25,4 @@ jobs:
       - name: Set Default Scheme
         run: |
            xcodebuild -scheme TestApp -resultBundlePath TestResults test -destination "platform=iOS Simulator,name=iPhone 14 pro,OS=16.2"
-#         xcodebuild test -project TestApp.xcodeproj -scheme TestApp -destination "platform=iOS Simulator,name=iPhone 14 pro,OS=16.2" build test -resultBundlePath TestResults
-#      - name: Run Tests
-#        run: |
-#          xcodebuild -scheme "MyFramework"  -resultBundlePath TestResults test
-#      - uses: tbartelmess/analyze-xcoderesults-action@0.1.0
-#        if: always()
-#        with:
-#          results: TestResults.xcresult
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  actions-timeline:
-    needs: [build]
-    runs-on: ubuntu-latest
-    permissions:
-      actions: read
-    steps:
-      - uses: Kesin11/actions-timeline@37c6155f2e2fc1a056abe1108c9ca61975a6e4f8 # v2.0.0
