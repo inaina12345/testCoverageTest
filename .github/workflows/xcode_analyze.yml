@@ -5,7 +5,16 @@ on:
   push:
     branches: [ "main" ]
 
+
+
+
 jobs:
+#  build1:
+#    runs-on: ubuntu-latest
+#    steps:
+#    # actions-timelineはpost処理の最後に実行されないと全てのジョブの情報を収集できないため、
+#    # 呼び出しは `actions/checkout` などよりも前の一番最初に行います。
+
   build:
     name: Build and analyse default scheme using xcodebuild command
     runs-on: macos-latest
@@ -15,13 +24,5 @@ jobs:
         uses: actions/checkout@v3
       - name: Set Default Scheme
         run: |
-          xcodebuild -scheme TestApp -resultBundlePath TestResults test -destination "platform=iOS Simulator,name=iPhone 14 pro,OS=16.2"
-#         xcodebuild test -project TestApp.xcodeproj -scheme TestApp -destination "platform=iOS Simulator,name=iPhone 14 pro,OS=16.2" build test -resultBundlePath TestResults
-#      - name: Run Tests
-#        run: |
-#          xcodebuild -scheme "MyFramework"  -resultBundlePath TestResults test
-      - uses: tbartelmess/analyze-xcoderesults-action@0.1.0
-        if: always()
-        with:
-          results: TestResults.xcresult
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           xcodebuild -scheme TestApp -resultBundlePath TestResults test -destination "platform=iOS Simulator,name=iPhone 14 pro,OS=16.2"
+

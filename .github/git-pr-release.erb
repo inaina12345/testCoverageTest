@@ -1,0 +1,49 @@
+## Productionリリース <%= Time.now.strftime('%Y-%m-%d %H:%M:%S') %>
+
+## このリリースに含まれる更新内容
+
+<% label_names = { 'enhancement' => '新機能(enhancement)', 'improvement' => '改善(improvement)', 'bug' => 'バグ改修(bug)', 'other' => 'その他' } -%>
+<% label_names.each do |label_name, label_display_name| -%>
+  <% filtered_prs = pull_requests.select do |pr|
+    if label_name == 'other'
+      pr.labels.none? { |label| ['improvement', 'bug', 'enhancement'].include?(label.name) }
+    else
+      pr.labels.any? { |label| label.name == label_name }
+    end
+  end -%>
+  <% next if filtered_prs.empty? -%>
+
+### <%= label_display_name %>
+  <% filtered_prs.each do |pr| -%>
+- #<%=  pr.number %> <%= pr.mention %>
+  <% end -%>
+<% end -%>
+
+<details>
+<summary>更新内容を振り分ける方法</summary>
+
+更新内容を振り分ける方法は以下の通りです。
+
+- 新機能: `enhancement` ラベルをPRに付与
+  - 新たに追加された機能がある場合に付与します
+- 改善: `improvement` ラベルをPRに付与
+  - 既存の機能の改善がある場合に付与します
+  - 既存機能の性能向上、最適化など
+- バグ改修: `bug` ラベルをPRに付与
+  - 既存機能に関するバグの修正がある場合に付与します
+
+後からラベルを付与することも可能ですが、更新はそのままでは実行されません。
+その場合は`git-pr-release` ジョブを手動再実行してください。
+
+</details>
+
+## このリリースに含まれるマージコミットの詳細
+
+<details>
+<summary>詳細を確認する</summary>
+
+<% pull_requests.each do |pr| -%>
+### <%= pr.merge_commit_sha %> <%= pr.title %> <%= pr.mention %>
+<%= pr.body %>
+<% end -%>
+</details>
